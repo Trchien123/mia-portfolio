@@ -3,15 +3,18 @@ import { defineConfig, type Plugin } from 'vite'
 
 // Preload the single variable font so it is not discovered late via CSS.
 function preloadFont(): Plugin {
+  let base = '/'
   return {
     name: 'preload-font',
     apply: 'build',
+    configResolved(config) {
+      base = config.base
+    },
     transformIndexHtml: {
       order: 'post',
       handler(_html, ctx) {
         const font = Object.keys(ctx.bundle ?? {}).find((f) => f.endsWith('.woff2'))
         if (!font) return []
-        const base = process.env.VITE_BASE ?? '/'
         return [
           {
             tag: 'link',

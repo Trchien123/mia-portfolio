@@ -226,3 +226,10 @@ test('objective is one region, labelled once', async ({ page }) => {
   await expect(page.locator('#objective article[aria-labelledby]')).toHaveCount(0)
   await expect(page.locator('#objective')).toHaveAttribute('aria-labelledby', 'objective-title')
 })
+
+test('opening a hash URL directly scrolls to the target', async ({ page }) => {
+  await page.goto('#experience')
+  await expect
+    .poll(() => page.locator('#experience').evaluate((e) => Math.abs(e.getBoundingClientRect().top)))
+    .toBeLessThan(80)
+})

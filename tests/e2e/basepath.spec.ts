@@ -36,3 +36,10 @@ test('404.html is a copy of index.html', () => {
   expect(existsSync('dist/404.html')).toBe(true)
   expect(readFileSync('dist/404.html').equals(readFileSync('dist/index.html'))).toBe(true)
 })
+
+test('opening #experience directly scrolls to it', async ({ page }) => {
+  await page.goto('#experience')
+  await expect
+    .poll(() => page.locator('#experience').evaluate((e) => Math.abs(e.getBoundingClientRect().top)))
+    .toBeLessThan(80)
+})

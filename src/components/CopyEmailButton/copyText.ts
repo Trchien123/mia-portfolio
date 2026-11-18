@@ -1,4 +1,5 @@
 function legacyCopy(text: string): boolean {
+  const previous = document.activeElement
   const area = document.createElement('textarea')
   area.value = text
   area.setAttribute('readonly', '')
@@ -11,6 +12,7 @@ function legacyCopy(text: string): boolean {
     return false
   } finally {
     area.remove()
+    if (previous instanceof HTMLElement) previous.focus({ preventScroll: true })
   }
 }
 

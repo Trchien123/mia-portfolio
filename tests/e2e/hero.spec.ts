@@ -50,3 +50,18 @@ test('copy failure is honest', async ({ page }) => {
   await expect(page.getByText('Copy failed', { exact: true })).toBeVisible()
   await expect(page.getByText('Copied', { exact: true })).toHaveCount(0)
 })
+
+test('fallback copy keeps focus on the copy button', async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: { writeText: () => Promise.reject(new Error('denied')) },
+    })
+    document.execCommand = () => false
+  })
+  await page.goto('')
+  const button = page.getByRole('button', { name: 'Copy email address' })
+  await button.click()
+  await expect(page.locator('[aria-live="polite"]')).toHaveText(`Copy failed. The email is ${EMAIL}`)
+  await expect(button).toBeFocused()
+})

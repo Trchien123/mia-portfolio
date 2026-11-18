@@ -1,6 +1,6 @@
 type Env = Record<string, string | undefined>
 
-const FALLBACK = 'https://mia-portfolio.vercel.app'
+const FALLBACK = 'https://hoangminhanh.vercel.app'
 
 /**
  * Absolute site URL used for canonical, Open Graph and JSON-LD.

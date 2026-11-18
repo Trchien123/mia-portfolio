@@ -12,6 +12,7 @@ import { useBrushSway } from '../../motion/useBrushSway'
 import { useInViewOnce } from '../../motion/useInViewOnce'
 import styles from './Hero.module.css'
 
+/** NOW flag flip target, ms from load (DESIGN.md Motion). */
 const NOW_AT_MS = 1250
 
 export function Hero() {

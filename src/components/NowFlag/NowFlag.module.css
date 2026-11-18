@@ -27,7 +27,7 @@
 }
 
 /* Hero only: the flag flips in like an updated price label once its block (data-now) is
-   in view, delayed by --d so it lands near --now-at after load. */
+   in view, delayed by --d so it lands near 1250ms after load. */
 @media (prefers-reduced-motion: no-preference) {
   :global(html.js) [data-now] .flag {
     opacity: 0;

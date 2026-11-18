@@ -12,7 +12,7 @@ export type Role = {
 export type Case = {
   id: string
   title: string
-  year: '2024'
+  year: string
   award: string
   context: string
   brief: string | null

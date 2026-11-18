@@ -8,16 +8,16 @@
   0% {
     opacity: 0;
     transform: translateY(-40px) rotate(var(--swing, -2deg));
-    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
+    animation-timing-function: var(--ease-in-cubic);
   }
   40% {
     opacity: 1;
     transform: translateY(0) rotate(calc(var(--swing, -2deg) * -0.35));
-    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+    animation-timing-function: var(--ease-out-cubic);
   }
   72% {
     transform: translateY(0) rotate(calc(var(--swing, -2deg) * 0.1));
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-timing-function: var(--ease-out);
   }
   100% {
     opacity: 1;

@@ -1,6 +1,6 @@
 import { prefersReducedMotion } from './useReducedMotion'
 
-/** App start, for the NOW flip target (DESIGN.md Motion: --now-at is measured from t0). */
+/** App start, for the NOW flip target (NOW_AT_MS in Hero is measured from t0). */
 export const t0 = (window as { __motionT0?: number }).__motionT0 ?? performance.now()
 
 /** True when index.html armed motion (`html.js`) and reduced motion is not requested. */

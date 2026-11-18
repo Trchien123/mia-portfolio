@@ -8,6 +8,7 @@ type PriceGunLabelProps = {
   shot: number
 }
 
+// Literal copies of --ease-out / --ease-in-quart in src/styles/tokens.css (WAAPI cannot read tokens).
 const EASE_OUT = 'cubic-bezier(0.16, 1, 0.3, 1)'
 const EASE_IN_QUART = 'cubic-bezier(0.5, 0, 0.75, 0)'
 

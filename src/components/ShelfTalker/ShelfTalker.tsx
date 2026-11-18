@@ -10,7 +10,7 @@ export function ShelfTalker({ headingId, heading, text, on = false }: ShelfTalke
       <span className={styles.arm} aria-hidden="true" />
       <Tag.Clip side="center" />
       <div className={styles.card}>
-        <Tag as="article" labelledBy={headingId}>
+        <Tag as="article">
           <Tag.Face tone="paper">
             <div className={styles.face}>
               <h2 id={headingId} className={`cond ${styles.heading}`}>

@@ -13,7 +13,7 @@ export function Wobbler({ onFlick, swingRef }: WobblerProps) {
     <button
       type="button"
       className={still ? `${styles.wob} ${styles.still}` : styles.wob}
-      aria-label="Flick the shelf wobbler"
+      aria-label="Grow the business. Flick the shelf wobbler"
       tabIndex={still ? -1 : undefined}
       aria-hidden={still || undefined}
       data-wobbler

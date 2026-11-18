@@ -76,15 +76,21 @@ test('sections clip on and print once scrolled into view', async ({ page }) => {
   for (const id of ['#about', '#experience', '#selected-work', '#specifications', '#contact']) {
     await page.locator(id).scrollIntoViewIfNeeded()
     await page.mouse.wheel(0, 400)
-    await page.waitForTimeout(250)
   }
-  await page.waitForTimeout(1600)
+  await expect
+    .poll(
+      async () => (await computed(page.locator('[data-face]'))).every((s) => s.opacity === '1'),
+      { timeout: 6000 },
+    )
+    .toBe(true)
   for (const style of await computed(page.locator('[data-face]'))) {
     expect(style.opacity, style.text).toBe('1')
   }
-  for (const style of await computed(page.locator('h2'))) {
-    expect(style.clipPath, style.text).not.toMatch(/100%/)
-  }
+  await expect
+    .poll(async () => (await computed(page.locator('h2'))).map((s) => s.clipPath).join(' '), {
+      timeout: 6000,
+    })
+    .not.toMatch(/100%/)
 })
 
 test('hero rail draws, tag drops and the NOW flag flips in on load', async ({ page }) => {
@@ -142,8 +148,23 @@ test('wobbler exists but is hidden at 375', async ({ page }) => {
 test('hero brush sway follows a fine pointer within 1.2deg and settles', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 })
   await page.goto('')
-  await page.waitForTimeout(1700)
   const face = page.locator('#top article > div:not([data-clip])')
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => {
+          const hang = document
+            .getAnimations()
+            .filter(
+              (a) =>
+                /hang/.test((a as CSSAnimation).animationName) &&
+                document.querySelector('#top')?.contains((a.effect as KeyframeEffect).target),
+            )
+          return hang.length > 0 && hang.every((a) => a.playState === 'finished')
+        }),
+      { timeout: 5000 },
+    )
+    .toBe(true)
   const box = await face.boundingBox()
   if (!box) throw new Error('no hero face')
   const y = box.y + box.height / 2

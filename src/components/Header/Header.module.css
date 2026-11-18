@@ -52,3 +52,18 @@
     letter-spacing: 0.03em;
   }
 }
+@media (max-width: 420px) {
+  .head {
+    gap: 10px;
+  }
+  .head .brand {
+    font-size: 1.375rem;
+  }
+  .list {
+    gap: 10px;
+  }
+  .head .link {
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+  }
+}

@@ -9,7 +9,11 @@ test('about shows heading, placeholder and facts', async ({ page }) => {
   const about = page.locator('#about')
   await expect(about.getByRole('heading', { level: 2, name: 'About me' })).toBeVisible()
   await expect(about.getByText('3–4 sentences about me — to be added')).toBeVisible()
-  for (const fact of ['Ho Chi Minh City, Vietnam', 'Marketing graduate, Swinburne, 2026', 'English & Vietnamese']) {
+  for (const fact of [
+    'Ho Chi Minh City, Vietnam',
+    'Marketing graduate, Swinburne, 2026',
+    'English & Vietnamese',
+  ]) {
     await expect(about.getByText(fact, { exact: true })).toBeVisible()
   }
 })
@@ -30,8 +34,13 @@ test('experience shows heading, lede and four roles in order', async ({ page }) 
 
 test('first role has price, NOW flag and trainee sub-line', async ({ page }) => {
   const first = page.locator('#experience article').first()
-  await expect(first.getByText('10.26', { exact: false }).first()).toBeVisible()
+  await expect(first.locator('[aria-hidden="true"]', { hasText: '10.26' }).first()).toBeVisible()
   await expect(first.getByText('Now', { exact: true })).toBeVisible()
+  for (const i of [1, 2, 3]) {
+    await expect(
+      page.locator('#experience article').nth(i).getByText('Now', { exact: true }),
+    ).toHaveCount(0)
+  }
   await expect(first.getByText('Key Account Management Trainee · 06.26 – 10.26')).toBeVisible()
 })
 
@@ -41,7 +50,9 @@ test('each role has at most three duties and spoken dates', async ({ page }) => 
     const a = articles.nth(i)
     expect(await a.locator('li').count()).toBeLessThanOrEqual(3)
     await expect(a.locator('.vh')).toHaveText(profile.experience[i].datesSpoken)
-    await expect(a.locator('[aria-hidden="true"]', { hasText: profile.experience[i].priceStart })).toHaveCount(1)
+    await expect(
+      a.locator('[aria-hidden="true"]', { hasText: profile.experience[i].priceStart }),
+    ).toHaveCount(1)
   }
 })
 

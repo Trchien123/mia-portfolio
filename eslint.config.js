@@ -8,8 +8,12 @@ export default tseslint.config(
   {
     files: ['**/*.{ts,tsx}'],
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    languageOptions: { globals: globals.browser },
     plugins: { 'react-hooks': reactHooks },
     rules: { ...reactHooks.configs.recommended.rules },
+  },
+  {
+    files: ['vite.config.ts', 'playwright.config.ts', 'eslint.config.js', 'tests/**/*.ts'],
+    languageOptions: { globals: globals.node },
   },
 )

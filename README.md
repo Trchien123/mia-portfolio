@@ -22,8 +22,11 @@ All copy lives in `src/content/profile.ts`.
 
 ## Deploy
 
-The site is published to GitHub Pages at `/mia-portfolio/` by `.github/workflows/deploy.yml` on every push to `main`.
-One manual step, once: **Settings → Pages → Source: GitHub Actions**.
+The site is hosted on Vercel. Import this repository once at vercel.com/new (framework preset: Vite; `vercel.json` sets the build command and output directory). After that, every push to `main` deploys to production and every pull request gets a preview URL.
+
+Canonical, Open Graph and JSON-LD URLs are filled in at build time from Vercel's `VERCEL_PROJECT_PRODUCTION_URL`. For a custom domain, either make it the project's production domain or set a `SITE_URL` environment variable (e.g. `https://example.com`).
+
+Hosting under a sub-path also works: build with `VITE_BASE=/sub-path/` (see `npm run test:e2e:base`).
 
 ## TODO
 

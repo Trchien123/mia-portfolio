@@ -1,0 +1,24 @@
+.aisle {
+  display: grid;
+  gap: var(--shelf-gap);
+}
+.tags {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--tags-gap);
+  align-items: start;
+  margin-top: var(--tuck);
+}
+@media (max-width: 1023px) {
+  .shelfRail {
+    display: none;
+  }
+  .tags {
+    grid-template-columns: 1fr;
+    gap: clamp(56px, 8vw, 72px);
+    margin-top: 0;
+  }
+  .aisle {
+    gap: clamp(56px, 8vw, 72px);
+  }
+}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Arm motion before first paint: hidden starting states apply only under html.js.
+      window.__motionT0 = performance.now()
+      if (
+        'IntersectionObserver' in window &&
+        !matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        document.documentElement.classList.add('js')
+        // Failsafe: if the app has not mounted (bundle failed), never leave content hidden.
+        setTimeout(function () {
+          if (!window.__appMounted) document.documentElement.classList.remove('js')
+        }, 3000)
+      }
+    </script>
+    <title>Hoang Minh Anh — Key Account Manager</title>
+    <meta
+      name="description"
+      content="Hoang Minh Anh, Key Account Manager at DIGIWORLD, Ho Chi Minh City. Marketplace operations for ASUS, Xiaomi and Hisense; LG Vina before that."
+    />
+    <link rel="canonical" href="https://trchien123.github.io/mia-portfolio/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#E8E9E5" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hoang Minh Anh — Key Account Manager" />
+    <meta
+      property="og:description"
+      content="Hoang Minh Anh, Key Account Manager at DIGIWORLD, Ho Chi Minh City. Marketplace operations for ASUS, Xiaomi and Hisense; LG Vina before that."
+    />
+    <meta property="og:url" content="https://trchien123.github.io/mia-portfolio/" />
+    <meta property="og:image" content="https://trchien123.github.io/mia-portfolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Hoang Minh Anh, Key Account Manager at DIGIWORLD. Brands worked with: ASUS, Xiaomi, Hisense, LG."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hoang Minh Anh — Key Account Manager" />
+    <meta
+      name="twitter:description"
+      content="Hoang Minh Anh, Key Account Manager at DIGIWORLD, Ho Chi Minh City. Marketplace operations for ASUS, Xiaomi and Hisense; LG Vina before that."
+    />
+    <meta name="twitter:image" content="https://trchien123.github.io/mia-portfolio/og-image.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Hoang Minh Anh",
+        "jobTitle": "Key Account Manager",
+        "worksFor": { "@type": "Organization", "name": "DIGIWORLD Corporation" },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Swinburne University of Technology"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ho Chi Minh City",
+          "addressCountry": "VN"
+        },
+        "email": "mailto:hmianh2504@gmail.com",
+        "url": "https://trchien123.github.io/mia-portfolio/",
+        "sameAs": ["https://www.linkedin.com/in/minh-anh-ho%C3%A0ng-88aa00333"]
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <div
+        style="
+          max-width: 36rem;
+          margin: 0 auto;
+          padding: 4rem 1.5rem;
+          font:
+            1.0625rem/1.5 system-ui,
+            sans-serif;
+          color: #16140f;
+        "
+      >
+        <h1 style="margin: 0 0 0.5rem; font-size: 2rem">Hoang Minh Anh</h1>
+        <p style="margin: 0 0 1rem">Key Account Manager, DIGIWORLD Corporation.</p>
+        <p style="margin: 0 0 1rem">
+          This portfolio needs JavaScript to display. Contact me directly:
+        </p>
+        <p style="margin: 0">
+          <a href="mailto:hmianh2504@gmail.com" style="color: #16140f">hmianh2504@gmail.com</a>
+        </p>
+      </div>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

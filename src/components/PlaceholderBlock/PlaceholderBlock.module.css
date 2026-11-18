@@ -1,0 +1,18 @@
+.blank {
+  min-height: clamp(150px, 16vw, 200px);
+  border: 1.5px dashed rgba(22, 20, 15, 0.45);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  font-stretch: 87%;
+  color: var(--ground-ink-2);
+}
+.copy {
+  min-height: clamp(150px, 16vw, 200px);
+  padding: 20px;
+  font-stretch: 87%;
+  line-height: 1.5;
+}

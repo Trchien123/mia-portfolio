@@ -1,0 +1,33 @@
+.brands {
+  grid-area: brands;
+  margin-top: clamp(36px, 5vw, 64px);
+  padding-top: 16px;
+  border-top: 2px solid var(--ink);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 24px;
+}
+.label {
+  font-stretch: 87%;
+  font-weight: var(--w-heavy);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-2);
+}
+.list {
+  font-size: var(--t-mid);
+  letter-spacing: 0.01em;
+}
+.keep {
+  white-space: nowrap;
+}
+.sep {
+  display: inline-block;
+  width: 0.26em;
+  height: 0.26em;
+  margin: 0 0.34em 0.14em;
+  background: currentColor;
+  border-radius: 50%;
+  vertical-align: middle;
+}

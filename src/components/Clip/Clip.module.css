@@ -1,0 +1,22 @@
+.clip {
+  position: absolute;
+  z-index: 4;
+  top: -12px;
+  width: 30px;
+  height: 22px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #d8dadc, #9b9fa2 60%, #7e8386);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.18);
+}
+.l {
+  left: 9%;
+}
+.r {
+  right: 9%;
+}
+.center {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin: -6px 0 -10px;
+}

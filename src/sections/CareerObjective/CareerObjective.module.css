@@ -1,0 +1,22 @@
+.section {
+  padding: clamp(8px, 2vw, 24px) var(--gutter) 0;
+}
+.row {
+  --off: clamp(0px, 8vw - 40px, 150px);
+  display: grid;
+  grid-template-columns: minmax(0, 880px) minmax(200px, 1fr);
+  column-gap: clamp(32px, 4vw, 64px);
+  padding-left: var(--off);
+  align-items: start;
+}
+@media (max-width: 1023px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 0.32fr);
+    column-gap: 28px;
+  }
+}
+@media (max-width: 719px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

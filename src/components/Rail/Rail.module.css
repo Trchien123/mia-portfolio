@@ -1,0 +1,51 @@
+.rail {
+  position: relative;
+  z-index: 3;
+  height: var(--rail-h);
+  margin: 0 calc(var(--gutter) * -1);
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--rail-hi) 0%,
+    #c6c9cb 22%,
+    var(--rail) 48%,
+    var(--rail-lo) 70%,
+    #b7babc 88%,
+    #8b8f92 100%
+  );
+  box-shadow: 0 3px 4px -1px rgba(20, 22, 24, 0.28);
+  transform-origin: 0 50%;
+}
+.rail::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+@keyframes rail-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* The parent decides when its rail draws: data-draw="load" on page load,
+   data-draw="view" when the parent is marked in view (data-on). */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) [data-draw='load'] > .rail {
+    animation: rail-draw var(--dur-rail) var(--ease-out) both;
+  }
+  :global(html.js) [data-draw='view'] > .rail {
+    transform: scaleX(0);
+    transition: transform var(--dur-rail) var(--ease-out);
+  }
+  :global(html.js) [data-draw='view'][data-on] > .rail {
+    transform: scaleX(1);
+  }
+}

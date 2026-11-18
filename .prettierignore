@@ -1,0 +1,6 @@
+dist
+public/*.png
+package-lock.json
+playwright-report
+test-results
+lighthouse

@@ -1,0 +1,39 @@
+.flag {
+  display: inline-block;
+  background: var(--red);
+  color: var(--on-red);
+  font-stretch: 75%;
+  font-weight: var(--w-heavy);
+  font-size: var(--t-body);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: 0.34em 0.5em 0.3em;
+  border-radius: 1px;
+}
+
+@keyframes flag-flip {
+  0% {
+    opacity: 0;
+    transform: perspective(420px) rotateX(-88deg);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(420px) rotateX(0);
+  }
+}
+
+/* Hero only: the flag flips in like an updated price label once its block (data-now) is
+   in view, delayed by --d so it lands near 1250ms after load. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) [data-now] .flag {
+    opacity: 0;
+  }
+  :global(html.js) [data-now][data-on] .flag {
+    transform-origin: 50% 0;
+    animation: flag-flip var(--dur-flip) var(--d, 0ms) var(--ease-out) both;
+  }
+}

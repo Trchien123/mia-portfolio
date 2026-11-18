@@ -1,0 +1,8 @@
+.cases {
+  display: grid;
+  gap: var(--case-gap);
+}
+/* Stagger the shelf: the second case hangs from the right. */
+.cases > :nth-child(2) > article {
+  margin-left: auto;
+}

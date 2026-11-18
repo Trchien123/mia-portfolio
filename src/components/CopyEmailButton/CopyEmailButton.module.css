@@ -1,0 +1,29 @@
+.gun {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.copy {
+  appearance: none;
+  margin: 0;
+  font: inherit;
+  font-stretch: 87%;
+  font-weight: var(--w-heavy);
+  font-size: 1rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  padding: 7px 10px 6px;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  transition:
+    background-color var(--dur-link) var(--ease-ui),
+    color var(--dur-link) var(--ease-ui);
+}
+.copy:hover {
+  background: var(--ink);
+  color: var(--tag);
+}

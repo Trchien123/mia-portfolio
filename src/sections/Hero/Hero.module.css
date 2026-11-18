@@ -1,0 +1,101 @@
+.hero {
+  padding: 22px var(--gutter) clamp(64px, 10vh, 112px);
+}
+.tag {
+  composes: dropOnLoad from '../../components/Tag/Tag.module.css';
+  --swing: -1.6deg;
+  margin-top: var(--tuck);
+}
+.face {
+  position: relative;
+  color: var(--ink);
+}
+.body {
+  background: var(--tag);
+  padding: clamp(32px, 5.4vw, 80px) var(--pad) clamp(28px, 3.4vw, 44px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.46fr);
+  column-gap: clamp(28px, 5vw, 80px);
+  grid-template-areas:
+    'name now'
+    'line now'
+    'brands brands';
+}
+.name {
+  grid-area: name;
+  font-size: clamp(3.4rem, 8.4vw, 6rem);
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.line {
+  grid-area: line;
+  margin-top: clamp(18px, 2.4vw, 28px);
+  max-width: 30ch;
+  font-size: clamp(1.125rem, 0.9rem + 0.7vw, 1.375rem);
+  font-stretch: 87%;
+  line-height: 1.45;
+}
+.now {
+  grid-area: now;
+  align-self: start;
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  padding-top: 6px;
+}
+.role {
+  composes: printLate from '../../components/SectionHeading/SectionHeading.module.css';
+  margin-top: 2px;
+  font-size: var(--t-mid);
+  text-wrap: balance;
+}
+.company {
+  font-stretch: 87%;
+  font-weight: var(--w-heavy);
+}
+.note {
+  margin-top: -6px;
+  font-stretch: 87%;
+  color: var(--ink-2);
+}
+.mailRow {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+.mail {
+  font-weight: var(--w-heavy);
+  overflow-wrap: anywhere;
+}
+.mailPrefix {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: var(--w-text);
+  color: var(--ink-2);
+  margin-right: 0.5em;
+}
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 18px;
+  }
+  .body {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'name'
+      'line'
+      'now'
+      'brands';
+    padding: 40px 20px 28px;
+  }
+  .name {
+    font-size: clamp(3.2rem, 17vw, 4.4rem);
+    line-height: 0.84;
+  }
+  .now {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 2px solid var(--ink);
+  }
+}

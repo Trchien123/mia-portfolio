@@ -1,0 +1,55 @@
+.wob {
+  position: relative;
+  z-index: 4;
+  justify-self: center;
+  width: min(100%, 280px);
+  margin-top: calc(var(--rail-h) * -1 - 4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.wob:focus-visible {
+  outline: none;
+}
+.clipWrap {
+  display: contents;
+}
+.clipWrap > span {
+  width: 34px;
+  margin: 0;
+}
+.swing {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: -8px;
+  overflow: visible;
+  transform-origin: 50% 0;
+  filter: drop-shadow(0 12px 14px rgba(46, 38, 6, 0.16)) drop-shadow(0 2px 2px rgba(46, 38, 6, 0.14));
+}
+.swing text {
+  font-family: var(--display);
+  font-stretch: 62%;
+  font-weight: var(--w-heavy);
+  fill: var(--ink);
+  letter-spacing: 0.02em;
+}
+.ring {
+  opacity: 0;
+}
+.wob:focus-visible .ring {
+  opacity: 1;
+}
+@media (max-width: 719px) {
+  .wob {
+    display: none;
+  }
+}

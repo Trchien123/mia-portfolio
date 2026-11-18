@@ -1,0 +1,13 @@
+.flag {
+  display: inline-block;
+  background: var(--red);
+  color: var(--on-red);
+  font-stretch: 75%;
+  font-weight: var(--w-heavy);
+  font-size: var(--t-body);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: 0.34em 0.5em 0.3em;
+  border-radius: 1px;
+}

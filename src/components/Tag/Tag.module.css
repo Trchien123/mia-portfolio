@@ -1,0 +1,5 @@
+.tag {
+  position: relative;
+  filter: var(--tag-shadow);
+  transform-origin: 50% 0;
+}

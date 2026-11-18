@@ -1,0 +1,10 @@
+.face {
+  position: relative;
+  color: var(--ink);
+}
+.yellow {
+  background: var(--tag);
+}
+.paper {
+  background: var(--paper);
+}

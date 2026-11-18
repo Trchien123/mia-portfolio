@@ -1,0 +1,28 @@
+.label {
+  position: absolute;
+  z-index: 6;
+  left: calc(100% + 8px);
+  top: 50%;
+  margin-top: -17px;
+  pointer-events: none;
+  white-space: nowrap;
+  background: var(--paper);
+  color: var(--ink);
+  font-stretch: 62%;
+  font-weight: var(--w-heavy);
+  font-size: 1.125rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 8px 11px 7px;
+  border-radius: 2px;
+  box-shadow: 0 3px 6px -1px rgba(46, 38, 6, 0.28);
+  transform: rotate(-3deg);
+  transform-origin: 0 50%;
+  opacity: 0;
+  visibility: hidden;
+}
+.on {
+  opacity: 1;
+  visibility: visible;
+}

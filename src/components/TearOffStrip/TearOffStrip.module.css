@@ -1,0 +1,28 @@
+.strip {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 32px;
+  padding: 20px var(--pad) 22px;
+  font-stretch: 87%;
+  background: var(--tag);
+  transform-origin: 0 0;
+}
+.strip::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -5px;
+  height: 10px;
+  background: radial-gradient(circle at 50% 50%, var(--ground) 0 2.6px, transparent 3.1px) 0 50% / 13px 10px repeat-x;
+}
+@media (max-width: 720px) {
+  .strip {
+    padding: 20px 20px 22px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

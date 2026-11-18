@@ -1,7 +1,8 @@
 import { expect, test } from '@playwright/test'
 import { profile } from '../../src/content/profile.ts'
+import { resolveSiteUrl } from '../../site-url.ts'
 
-const CANONICAL = 'https://trchien123.github.io/mia-portfolio/'
+const CANONICAL = resolveSiteUrl()
 const OG_IMAGE = `${CANONICAL}og-image.png`
 
 test('title, description, canonical', async ({ page }) => {

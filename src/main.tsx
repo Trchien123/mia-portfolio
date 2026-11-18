@@ -11,3 +11,5 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 )
+// Tells the index.html failsafe the bundle ran, so it keeps html.js.
+;(window as { __appMounted?: boolean }).__appMounted = true

@@ -1,7 +1,7 @@
 import { prefersReducedMotion } from './useReducedMotion'
 
 /** App start, for the NOW flip target (DESIGN.md Motion: --now-at is measured from t0). */
-export const t0 = performance.now()
+export const t0 = (window as { __motionT0?: number }).__motionT0 ?? performance.now()
 
 /** True when index.html armed motion (`html.js`) and reduced motion is not requested. */
 export function isMotionOn(): boolean {

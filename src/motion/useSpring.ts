@@ -39,7 +39,7 @@ export function useSpring<T extends HTMLElement | SVGElement>(
 
   useEffect(() => {
     const el = ref.current
-    if (!el || reduce) return
+    if (!el || reduce || !('IntersectionObserver' in window)) return
     const spring = createSpring(el, {
       omega,
       zeta,

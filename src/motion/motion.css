@@ -1,4 +1,4 @@
-/* Global motion rules. Keyframes live in the CSS Module that owns them (DESIGN.md Motion).
+/* Global motion rules. Keyframes live in the CSS Module that owns them.
    Every hidden starting state is gated on html.js, which index.html sets before paint only
    when IntersectionObserver exists and reduced motion is not requested. */
 html {

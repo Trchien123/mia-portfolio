@@ -7,7 +7,7 @@ import { useInViewOnce } from '../../motion/useInViewOnce'
 import { useSpring } from '../../motion/useSpring'
 import styles from './CareerObjective.module.css'
 
-/** DESIGN.md Motion → Spring: wobbler w 10, zeta .22, max 12deg, cap 13deg. */
+/** Spring: wobbler w 10, zeta .22, max 12deg, cap 13deg. */
 const WOBBLER_SPRING = { omega: 10, zeta: 0.22, max: 12, energyCap: 13 }
 const KICK = { scroll: 6.5, nudge: 2.6, flick: 9 }
 const SCROLL_KICK_DELAY_MS = 180

@@ -4,15 +4,3 @@ package-lock.json
 playwright-report
 test-results
 lighthouse
-design-lab/
-docs/plans/
-docs/superpowers/
-.impeccable/
-.claude/
-.superpowers/
-.playwright-mcp/
-.agents/
-CLAUDE.md
-DESIGN.md
-PRODUCT.md
-docs/DECISIONS.md

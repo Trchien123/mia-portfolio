@@ -1,0 +1,88 @@
+.tag {
+  transition: transform var(--dur-tilt) var(--ease-ui);
+}
+.hangRail {
+  display: none;
+}
+.item {
+  padding: clamp(28px, 3vw, 40px) clamp(22px, 2.6vw, 36px) clamp(26px, 3vw, 36px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 24px;
+  grid-template-areas: 'role price' 'co co' 'sub sub' 'duties duties';
+}
+.role {
+  grid-area: role;
+  align-self: end;
+  font-size: var(--t-mid);
+  text-wrap: balance;
+}
+.priceArea {
+  grid-area: price;
+  align-self: end;
+}
+.company {
+  grid-area: co;
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 2px solid var(--ink);
+  font-stretch: 87%;
+  font-weight: var(--w-heavy);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.sub {
+  grid-area: sub;
+  margin-top: 4px;
+  font-stretch: 87%;
+  color: var(--ink-2);
+}
+.duties {
+  grid-area: duties;
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+  font-stretch: 87%;
+  line-height: 1.45;
+  max-width: 62ch;
+}
+.duties li {
+  position: relative;
+  padding-left: 18px;
+}
+.duties li::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  background: var(--ink);
+}
+@media (hover: hover) {
+  .tag:hover {
+    transform: rotate(-0.8deg);
+  }
+  .tag:nth-child(2):hover {
+    transform: rotate(0.8deg);
+  }
+}
+@media (max-width: 1023px) {
+  .hangRail {
+    display: block;
+    margin: 0 calc(var(--gutter) * -1) -5px;
+  }
+  .tag > span {
+    top: calc(var(--rail-h) - 12px);
+  }
+}
+@media (max-width: 520px) {
+  .item {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'price' 'role' 'co' 'sub' 'duties';
+    padding: 32px 20px 28px;
+  }
+  .role {
+    margin-top: 10px;
+  }
+}

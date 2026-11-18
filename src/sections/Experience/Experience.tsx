@@ -13,8 +13,10 @@ function toShelves(roles: Role[]): Role[][] {
   return shelves
 }
 
+type ShelfProps = { roles: Role[] }
+
 /** A shelf rail with up to two tags. The rail draws when either tag enters view. */
-function Shelf({ roles }: { roles: Role[] }) {
+function Shelf({ roles }: ShelfProps) {
   const [on, setOn] = useState(false)
   const show = useCallback(() => setOn(true), [])
   return (

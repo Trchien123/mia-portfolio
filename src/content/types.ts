@@ -3,7 +3,7 @@ export type Role = {
   title: string
   company: string
   priceStart: string
-  priceEnd: string | 'NOW'
+  priceEnd: string
   datesSpoken: string
   subLine?: string
   duties: string[]

@@ -40,6 +40,8 @@ test('404.html is a copy of index.html', () => {
 test('opening #experience directly scrolls to it', async ({ page }) => {
   await page.goto('#experience')
   await expect
-    .poll(() => page.locator('#experience').evaluate((e) => Math.abs(e.getBoundingClientRect().top)))
+    .poll(() =>
+      page.locator('#experience').evaluate((e) => Math.abs(e.getBoundingClientRect().top)),
+    )
     .toBeLessThan(80)
 })

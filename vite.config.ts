@@ -18,7 +18,13 @@ function preloadFont(): Plugin {
         return [
           {
             tag: 'link',
-            attrs: { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: '', href: `${base}${font}` },
+            attrs: {
+              rel: 'preload',
+              as: 'font',
+              type: 'font/woff2',
+              crossorigin: '',
+              href: `${base}${font}`,
+            },
             injectTo: 'head',
           },
         ]

@@ -230,6 +230,8 @@ test('objective is one region, labelled once', async ({ page }) => {
 test('opening a hash URL directly scrolls to the target', async ({ page }) => {
   await page.goto('#experience')
   await expect
-    .poll(() => page.locator('#experience').evaluate((e) => Math.abs(e.getBoundingClientRect().top)))
+    .poll(() =>
+      page.locator('#experience').evaluate((e) => Math.abs(e.getBoundingClientRect().top)),
+    )
     .toBeLessThan(80)
 })

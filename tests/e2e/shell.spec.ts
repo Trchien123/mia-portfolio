@@ -40,7 +40,14 @@ test('landmarks exist', async ({ page }) => {
 
 test('sections appear in order inside main', async ({ page }) => {
   const ids = await page.locator('main > section').evaluateAll((els) => els.map((e) => e.id))
-  expect(ids).toEqual(['top', 'objective', 'about', 'experience', 'selected-work', 'specifications'])
+  expect(ids).toEqual([
+    'top',
+    'objective',
+    'about',
+    'experience',
+    'selected-work',
+    'specifications',
+  ])
 })
 
 test('each section is labelled by its heading', async ({ page }) => {

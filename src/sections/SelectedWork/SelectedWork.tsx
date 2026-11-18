@@ -5,7 +5,7 @@ import styles from './SelectedWork.module.css'
 
 export function SelectedWork() {
   return (
-    <section id="selected-work" className={styles.section} aria-labelledby="selected-work-title">
+    <section id="selected-work" className="section" aria-labelledby="selected-work-title">
       <SectionHeading id="selected-work-title" lede={profile.ledes.selectedWork}>
         Selected work
       </SectionHeading>

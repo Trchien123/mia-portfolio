@@ -13,7 +13,7 @@ function toShelves(roles: Role[]): Role[][] {
 
 export function Experience() {
   return (
-    <section id="experience" className={styles.section} aria-labelledby="experience-title">
+    <section id="experience" className="section" aria-labelledby="experience-title">
       <SectionHeading id="experience-title" lede={profile.ledes.experience}>
         Experience
       </SectionHeading>

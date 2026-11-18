@@ -17,7 +17,7 @@ async function computed(locator: Locator) {
 
 /** The swinging wobbler SVG's current rotation in degrees (0 when untransformed). */
 function swingAngle(page: Page) {
-  return page.locator('#objective button svg').evaluate((el) => {
+  return page.locator('#objective [data-wobbler-swing]').evaluate((el) => {
     const t = getComputedStyle(el).transform
     if (t === 'none') return 0
     const m = new DOMMatrix(t)
@@ -26,7 +26,9 @@ function swingAngle(page: Page) {
 }
 
 function swingTransform(page: Page) {
-  return page.locator('#objective button svg').evaluate((el) => getComputedStyle(el).transform)
+  return page
+    .locator('#objective [data-wobbler-swing]')
+    .evaluate((el) => getComputedStyle(el).transform)
 }
 
 test('reduced motion shows everything', async ({ page }) => {
@@ -79,7 +81,10 @@ test('sections clip on and print once scrolled into view', async ({ page }) => {
   }
   await expect
     .poll(
-      async () => (await computed(page.locator('[data-face]'))).every((s) => s.opacity === '1'),
+      async () => {
+        const styles = await computed(page.locator('[data-face]'))
+        return styles.length > 0 && styles.every((s) => s.opacity === '1')
+      },
       { timeout: 6000 },
     )
     .toBe(true)

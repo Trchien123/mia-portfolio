@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright'
-import { expect, test } from '@playwright/test'
+import { expect, test, type Locator, type Page } from '@playwright/test'
 import { profile } from '../../src/content/profile.ts'
 
 const FACE = '#top article > div:not([data-clip])'
@@ -55,6 +55,7 @@ test('content visible without javascript', async ({ request }) => {
   expect(note).toContain(profile.current.role)
   expect(note).toContain(`mailto:${profile.email}`)
   expect(note).toContain(profile.email)
+  expect(note).toContain(profile.current.company)
   expect(note).toMatch(/<h1/)
 })
 
@@ -66,7 +67,16 @@ test('axe finds no serious or critical violations', async ({ page }) => {
     // Scroll through so clip-on entrances finish before contrast is measured.
     const h = await page.evaluate(() => document.documentElement.scrollHeight)
     for (let y = 0; y < h; y += 500) await page.mouse.wheel(0, 500)
-    await page.waitForTimeout(2200)
+    await expect
+      .poll(
+        () =>
+          page.evaluate(() => {
+            const faces = Array.from(document.querySelectorAll('[data-face]'))
+            return faces.length > 0 && faces.every((f) => getComputedStyle(f).opacity === '1')
+          }),
+        { timeout: 8000 },
+      )
+      .toBe(true)
     const res = await new AxeBuilder({ page }).analyze()
     const bad = res.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical')
     expect(
@@ -106,17 +116,77 @@ test('tab order: skip link, nav, hero, wobbler, footer LinkedIn', async ({ page 
   expect(seen[linkedin], detail).toMatch(/^footer\|/)
 })
 
-test('brush sway does not move the hero face before the entrance ends', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 })
-  await page.goto('')
-  const face = page.locator(FACE)
+/** Sweeps a mouse across the hero face; returns the peak |rotation| of the face in degrees. */
+async function sweepPeakDeg(page: Page, face: Locator) {
   const box = await face.boundingBox()
   if (!box) throw new Error('no hero face')
   const y = box.y + box.height / 2
   await page.mouse.move(box.x + 100, y)
+  let peak = 0
+  for (let i = 0; i < 10; i++) {
+    await page.mouse.move(box.x + 150 + i * 60, y, { steps: 3 })
+    peak = Math.max(peak, await faceDeg(face))
+  }
+  return peak
+}
+
+function faceDeg(face: Locator) {
+  return face.evaluate((el) => {
+    const t = getComputedStyle(el).transform
+    if (t === 'none') return 0
+    const m = new DOMMatrix(t)
+    return Math.abs((Math.atan2(m.b, m.a) * 180) / Math.PI)
+  })
+}
+
+const heroEntranceDone = (page: Page) =>
+  page.evaluate(() => {
+    const hang = document
+      .getAnimations()
+      .filter(
+        (a) =>
+          /hang/.test((a as CSSAnimation).animationName) &&
+          document.querySelector('#top')?.contains((a.effect as KeyframeEffect).target),
+      )
+    return hang.length > 0 && hang.every((a) => a.playState === 'finished')
+  })
+
+test('brush sway: moves the face after the entrance (positive control)', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto('')
+  await expect.poll(() => heroEntranceDone(page), { timeout: 5000 }).toBe(true)
+  expect(await sweepPeakDeg(page, page.locator(FACE))).toBeGreaterThan(0.1)
+})
+
+test('brush sway does not move the hero face before the entrance ends', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto('')
+  const face = page.locator(FACE)
+  const state = () =>
+    face.evaluate((el) => {
+      const anims = document
+        .getAnimations()
+        .filter((a) => /hang/.test((a as CSSAnimation).animationName))
+      const owners = anims.map((a) => (a.effect as KeyframeEffect).target as Element)
+      return {
+        running: anims.some((a) => a.playState !== 'finished'),
+        // The entrance animates an ancestor, never the face that sways.
+        onParent: owners.some((o) => o !== el && o.contains(el)),
+        onFace: owners.includes(el),
+      }
+    })
+  const box = await face.boundingBox()
+  if (!box) throw new Error('no hero face')
+  const y = box.y + box.height / 2
+  await page.mouse.move(box.x + 100, y)
+  const first = await state()
+  expect(first.running).toBe(true)
+  expect(first.onParent).toBe(true)
+  expect(first.onFace).toBe(false)
   for (let i = 0; i < 6; i++) {
     await page.mouse.move(box.x + 150 + i * 80, y, { steps: 2 })
-    expect(await face.evaluate((el) => getComputedStyle(el).transform)).toBe('none')
+    if (!(await state()).running) break
+    expect(await faceDeg(face)).toBe(0)
   }
 })
 
@@ -124,17 +194,12 @@ test.describe('coarse pointer', () => {
   test.use({ hasTouch: true, isMobile: true, viewport: { width: 820, height: 900 } })
   test('brush sway never moves the hero face', async ({ page }) => {
     await page.goto('')
-    await page.waitForTimeout(2000)
+    await expect.poll(() => heroEntranceDone(page), { timeout: 5000 }).toBe(true)
     expect(
       await page.evaluate(() => matchMedia('(hover: hover) and (pointer: fine)').matches),
     ).toBe(false)
-    const face = page.locator(FACE)
-    const box = await face.boundingBox()
-    if (!box) throw new Error('no hero face')
-    const y = box.y + box.height / 2
-    await page.mouse.move(box.x + 50, y)
-    for (let i = 0; i < 8; i++) await page.mouse.move(box.x + 100 + i * 40, y, { steps: 2 })
-    expect(await face.evaluate((el) => getComputedStyle(el).transform)).toBe('none')
+    expect(await sweepPeakDeg(page, page.locator(FACE))).toBe(0)
+    expect(await page.locator(FACE).evaluate((el) => getComputedStyle(el).transform)).toBe('none')
   })
 })
 
@@ -147,11 +212,13 @@ test('reduced motion: clicking the wobbler leaves it untransformed', async ({ pa
   const box = await wob.boundingBox()
   if (!box) throw new Error('no wobbler')
   await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2)
-  await page.waitForTimeout(200)
-  const t = await page
-    .locator('#objective button svg')
-    .evaluate((el) => getComputedStyle(el).transform)
-  expect(t).toBe('none')
+  const swing = page.locator('#objective [data-wobbler-swing]')
+  await expect(swing).toHaveCount(1)
+  // Poll over a window: any transform at any sample fails.
+  for (let i = 0; i < 6; i++) {
+    expect(await swing.evaluate((el) => getComputedStyle(el).transform)).toBe('none')
+    await page.mouse.move(box.x + box.width / 2 + i, box.y + box.height / 2)
+  }
 })
 
 test('objective is one region, labelled once', async ({ page }) => {

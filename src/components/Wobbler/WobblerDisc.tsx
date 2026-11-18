@@ -7,6 +7,7 @@ export function WobblerDisc({ swingRef }: WobblerDiscProps) {
   return (
     <svg
       ref={swingRef}
+      data-wobbler-swing
       className={styles.swing}
       viewBox="0 0 220 372"
       focusable="false"

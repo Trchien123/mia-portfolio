@@ -26,3 +26,13 @@
   opacity: 1;
   visibility: visible;
 }
+
+/* Phones: no room beside the button, so the label sits above it. */
+@media (max-width: 720px) {
+  .label {
+    left: 0;
+    top: auto;
+    bottom: calc(100% + 6px);
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,54 @@
+.head {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--head-h);
+  background: var(--ink);
+  color: var(--tag);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 var(--gutter);
+}
+.head :focus-visible {
+  outline-color: var(--tag);
+}
+.brand,
+.link {
+  font-size: 1rem;
+  font-weight: var(--w-heavy);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.head .brand {
+  font-stretch: 62%;
+  font-size: 1.625rem;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+.list {
+  display: flex;
+  gap: clamp(18px, 3vw, 36px);
+}
+.link {
+  font-stretch: 87%;
+  padding: 6px 0;
+  background: linear-gradient(var(--tag), var(--tag)) 0 100% / 0 2px no-repeat;
+  transition: background-size var(--dur-nav) var(--ease-ui);
+}
+.link:hover {
+  background-size: 100% 2px;
+}
+@media (max-width: 520px) {
+  .list {
+    gap: 14px;
+  }
+  .head .link {
+    font-stretch: 66%;
+    font-size: 0.9375rem;
+    letter-spacing: 0.03em;
+  }
+}

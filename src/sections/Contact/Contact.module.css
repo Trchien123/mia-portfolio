@@ -1,0 +1,18 @@
+.counter {
+  margin-top: var(--counter-top);
+  padding: 0 var(--gutter);
+  background: var(--tag);
+  color: var(--ink);
+}
+.inner {
+  padding: clamp(48px, 7vw, 96px) 0 clamp(48px, 6vw, 80px);
+}
+.heading {
+  font-size: var(--t-xl);
+  font-stretch: 62%;
+  font-weight: var(--w-heavy);
+  text-transform: uppercase;
+  line-height: 0.86;
+  word-spacing: 0.12em;
+  text-wrap: balance;
+}

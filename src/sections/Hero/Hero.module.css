@@ -1,0 +1,22 @@
+.hero {
+  padding: 22px var(--gutter) clamp(64px, 10vh, 112px);
+}
+.name {
+  font-size: clamp(3.4rem, 8.4vw, 6rem);
+  font-stretch: 62%;
+  font-weight: var(--w-heavy);
+  text-transform: uppercase;
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  word-spacing: 0.12em;
+  text-wrap: balance;
+}
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 18px;
+  }
+  .name {
+    font-size: clamp(3.2rem, 17vw, 4.4rem);
+    line-height: 0.84;
+  }
+}

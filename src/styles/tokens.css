@@ -1,0 +1,67 @@
+:root {
+  /* Colors */
+  --tag: #f6cb2a;
+  --ink: #16140f;
+  --ink-2: #4a3d0c;
+  --ground: #e8e9e5;
+  --ground-2: #dcddd8;
+  --ground-ink-2: #474944;
+  --rail-hi: #e4e6e7;
+  --rail: #a9adb0;
+  --rail-lo: #6f7477;
+  --red: #c8201a;
+  --paper: #fbfaf4;
+  --on-red: #fff7e8;
+  --spec-ink: #262622;
+
+  /* Type */
+  --display: 'Archivo Variable', 'Arial Narrow', sans-serif;
+  --t-body: 1.0625rem;
+  --t-mid: clamp(1.6rem, 2.6vw, 2.35rem);
+  --t-xl: clamp(3rem, 7vw, 5.5rem);
+  --w-heavy: 800;
+  --w-text: 500;
+
+  /* Layout */
+  --gutter: clamp(16px, 4vw, 48px);
+  --pad: clamp(24px, 4vw, 56px);
+  --head-h: 56px;
+  --rail-h: 14px;
+  --tuck: -5px;
+  --section-top: clamp(64px, 10vw, 128px);
+  --sec-head-gap: clamp(32px, 5vw, 56px);
+  --shelf-gap: clamp(56px, 7vw, 96px);
+  --case-gap: clamp(56px, 7vw, 88px);
+  --tags-gap: clamp(24px, 3vw, 48px);
+  --counter-top: clamp(80px, 11vw, 150px);
+
+  /* Shadows */
+  --tag-shadow: drop-shadow(0 14px 18px rgba(46, 38, 6, 0.18)) drop-shadow(0 2px 2px rgba(46, 38, 6, 0.16));
+
+  /* Easings */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-ui: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-cubic: cubic-bezier(0.32, 0, 0.67, 0);
+  --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-in-quart: cubic-bezier(0.5, 0, 0.75, 0);
+
+  /* Durations and delays */
+  --dur-link: 150ms;
+  --dur-slot: 180ms;
+  --dur-nav: 220ms;
+  --dur-peel: 240ms;
+  --dur-tilt: 300ms;
+  --dur-flip: 520ms;
+  --dur-print-role: 680ms;
+  --dur-rail: 700ms;
+  --dur-wipe: 720ms;
+  --dur-hang: 900ms;
+  --dur-hang-hero: 1000ms;
+  --dur-talker: 1500ms;
+  --dur-gun: 1850ms;
+  --delay-hero-tag: 380ms;
+  --now-at: 1250ms;
+  --delay-role: 360ms;
+  --delay-clip: 220ms;
+  --stagger: 160ms;
+}

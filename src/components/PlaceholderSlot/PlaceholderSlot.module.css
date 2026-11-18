@@ -1,0 +1,43 @@
+.slot,
+.filled {
+  position: relative;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.24);
+  padding: 14.5px 17.5px;
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 2px 16px;
+  align-items: baseline;
+  font-stretch: 87%;
+}
+.slot::before,
+.slot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  pointer-events: none;
+}
+.slot::before {
+  border: 1.5px dashed rgba(22, 20, 15, 0.5);
+}
+.slot::after {
+  border: 1.5px solid rgba(22, 20, 15, 0.34);
+  opacity: 0;
+}
+.slot dt,
+.filled dt {
+  font-weight: var(--w-heavy);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.slot dd {
+  color: var(--ink-2);
+}
+@media (max-width: 520px) {
+  .slot,
+  .filled {
+    grid-template-columns: 5.75rem minmax(0, 1fr);
+    padding: 12px 14px;
+  }
+}

@@ -29,11 +29,18 @@ test('email link and no CV link while cvUrl is null', async ({ page }) => {
 test('copy writes email', async ({ page, context }) => {
   await context.grantPermissions(['clipboard-read', 'clipboard-write'])
   await page.goto('')
-  await page.getByRole('button', { name: 'Copy email address' }).click()
+  await page
+    .getByRole('article', { name: 'Hoang Minh Anh' })
+    .getByRole('button', { name: 'Copy email address' })
+    .click()
   await expect(page.locator('[aria-live="polite"]')).toHaveText('Email copied')
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(EMAIL)
-  await expect(page.getByText('Copied', { exact: true })).toBeVisible()
-  await expect(page.getByText('Copied', { exact: true })).toBeHidden({ timeout: 4000 })
+  await expect(
+    page.getByRole('article', { name: 'Hoang Minh Anh' }).getByText('Copied', { exact: true }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole('article', { name: 'Hoang Minh Anh' }).getByText('Copied', { exact: true }),
+  ).toBeHidden({ timeout: 4000 })
 })
 
 test('copy failure is honest', async ({ page }) => {
@@ -45,10 +52,19 @@ test('copy failure is honest', async ({ page }) => {
     document.execCommand = () => false
   })
   await page.goto('')
-  await page.getByRole('button', { name: 'Copy email address' }).click()
-  await expect(page.locator('[aria-live="polite"]')).toHaveText(`Copy failed. The email is ${EMAIL}`)
-  await expect(page.getByText('Copy failed', { exact: true })).toBeVisible()
-  await expect(page.getByText('Copied', { exact: true })).toHaveCount(0)
+  await page
+    .getByRole('article', { name: 'Hoang Minh Anh' })
+    .getByRole('button', { name: 'Copy email address' })
+    .click()
+  await expect(page.locator('[aria-live="polite"]')).toHaveText(
+    `Copy failed. The email is ${EMAIL}`,
+  )
+  await expect(
+    page.getByRole('article', { name: 'Hoang Minh Anh' }).getByText('Copy failed', { exact: true }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole('article', { name: 'Hoang Minh Anh' }).getByText('Copied', { exact: true }),
+  ).toHaveCount(0)
 })
 
 test('fallback copy keeps focus on the copy button', async ({ page }) => {
@@ -60,8 +76,12 @@ test('fallback copy keeps focus on the copy button', async ({ page }) => {
     document.execCommand = () => false
   })
   await page.goto('')
-  const button = page.getByRole('button', { name: 'Copy email address' })
+  const button = page
+    .getByRole('article', { name: 'Hoang Minh Anh' })
+    .getByRole('button', { name: 'Copy email address' })
   await button.click()
-  await expect(page.locator('[aria-live="polite"]')).toHaveText(`Copy failed. The email is ${EMAIL}`)
+  await expect(page.locator('[aria-live="polite"]')).toHaveText(
+    `Copy failed. The email is ${EMAIL}`,
+  )
   await expect(button).toBeFocused()
 })

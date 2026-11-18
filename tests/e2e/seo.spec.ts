@@ -13,6 +13,9 @@ test('title, description, canonical', async ({ page }) => {
   expect(desc).toBeTruthy()
   expect(desc!.length).toBeLessThanOrEqual(160)
   expect(desc).toContain(profile.current.company.split(' ')[0])
+  expect(desc).toContain(profile.city.split(',')[0])
+  expect(await page.locator('meta[property="og:description"]').getAttribute('content')).toBe(desc)
+  expect(await page.locator('meta[name="twitter:description"]').getAttribute('content')).toBe(desc)
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', CANONICAL)
 })
 
@@ -47,6 +50,7 @@ test('JSON-LD Person matches profile (static, no JS needed)', async ({ browser }
   })
   expect(ld.address).toMatchObject({ addressLocality: 'Ho Chi Minh City', addressCountry: 'VN' })
   expect(profile.city).toContain('Ho Chi Minh City')
+  expect(profile.specs[0].value).toContain('Swinburne University of Technology')
   expect(ld.email).toBe(`mailto:${profile.email}`)
   expect(ld.sameAs).toEqual([profile.linkedinUrl])
   expect(ld.url).toBe(CANONICAL)

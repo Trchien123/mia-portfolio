@@ -1,4 +1,15 @@
+/* Swing by case on the clip-on drop: -1.6deg, +1.6deg, -1.2deg. */
+.case {
+  --swing: -1.6deg;
+}
+.case:nth-child(2) {
+  --swing: 1.6deg;
+}
+.case:nth-child(3) {
+  --swing: -1.2deg;
+}
 .tag {
+  composes: clipOn from '../Tag/Tag.module.css';
   margin-top: var(--tuck);
   width: min(100%, 1180px);
 }

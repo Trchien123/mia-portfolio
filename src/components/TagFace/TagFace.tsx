@@ -5,7 +5,7 @@ type TagFaceProps = { tone?: 'yellow' | 'paper'; children: ReactNode }
 
 export function TagFace({ tone = 'yellow', children }: TagFaceProps) {
   return (
-    <div className={`${styles.face} ${tone === 'paper' ? styles.paper : styles.yellow}`}>
+    <div data-face className={`${styles.face} ${tone === 'paper' ? styles.paper : styles.yellow}`}>
       {children}
     </div>
   )

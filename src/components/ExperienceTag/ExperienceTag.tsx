@@ -1,16 +1,26 @@
 import type { Role } from '../../content/types'
+import { dataOn, TAG_VIEW } from '../../motion/motion'
+import { useInViewOnce } from '../../motion/useInViewOnce'
 import { PricePosition } from '../PricePosition/PricePosition'
 import { Rail } from '../Rail/Rail'
 import { Tag } from '../Tag/Tag'
 import styles from './ExperienceTag.module.css'
 
-type ExperienceTagProps = { role: Role; index: number }
+type ExperienceTagProps = { role: Role; index: number; onShow?: () => void }
 
-export function ExperienceTag({ role, index }: ExperienceTagProps) {
+export function ExperienceTag({ role, index, onShow }: ExperienceTagProps) {
   const headingId = `role-${role.id}`
+  const [ref, on] = useInViewOnce<HTMLElement>({ ...TAG_VIEW, onEnter: onShow })
   return (
-    <Tag labelledBy={headingId} kind="experience" index={index} className={styles.tag}>
-      <div className={styles.hangRail} data-hang-rail>
+    <Tag
+      ref={ref}
+      on={on}
+      labelledBy={headingId}
+      kind="experience"
+      index={index}
+      className={styles.tag}
+    >
+      <div className={styles.hangRail} data-hang-rail data-draw="view" data-on={dataOn(on)}>
         <Rail />
       </div>
       <Tag.Clip side="l" />

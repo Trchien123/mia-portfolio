@@ -4,6 +4,7 @@
   padding: clamp(20px, 2.6vw, 32px) clamp(20px, 3vw, 36px) clamp(10px, 1.4vw, 16px);
 }
 .heading {
+  composes: wipe from '../SectionHeading/SectionHeading.module.css';
   font-size: var(--t-mid);
   padding-bottom: 12px;
   border-bottom: 6px solid var(--ink);

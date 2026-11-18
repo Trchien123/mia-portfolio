@@ -1,11 +1,12 @@
+import { dataOn } from '../../motion/motion'
 import { Tag } from '../Tag/Tag'
 import styles from './ShelfTalker.module.css'
 
-type ShelfTalkerProps = { headingId: string; heading: string; text: string }
+type ShelfTalkerProps = { headingId: string; heading: string; text: string; on?: boolean }
 
-export function ShelfTalker({ headingId, heading, text }: ShelfTalkerProps) {
+export function ShelfTalker({ headingId, heading, text, on = false }: ShelfTalkerProps) {
   return (
-    <div className={styles.hang}>
+    <div className={styles.hang} data-on={dataOn(on)}>
       <span className={styles.arm} aria-hidden="true" />
       <Tag.Clip side="center" />
       <div className={styles.card}>

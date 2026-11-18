@@ -1,3 +1,12 @@
+/* Headings print left to right once their parent box is in view (data-on on the heading).
+   Composed by SpecsPanel and the footer heading. */
+.wipe {
+}
+
+/* The hero role prints after the NOW flag flips; its parent block carries data-on and --d. */
+.printLate {
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -6,6 +15,7 @@
   margin-bottom: var(--sec-head-gap);
 }
 .heading {
+  composes: wipe;
   font-size: var(--t-xl);
   font-stretch: 62%;
   font-weight: var(--w-heavy);
@@ -18,4 +28,30 @@
   font-stretch: 87%;
   line-height: 1.45;
   color: var(--ground-ink-2);
+}
+
+@keyframes print {
+  from {
+    clip-path: inset(-0.2em 100% -0.2em -0.2em);
+  }
+  to {
+    clip-path: inset(-0.2em -0.2em -0.2em -0.2em);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) .wipe {
+    clip-path: inset(-0.2em 100% -0.2em -0.2em);
+  }
+  :global(html.js) .wipe[data-on] {
+    clip-path: inset(-0.2em -0.2em -0.2em -0.2em);
+    transition: clip-path var(--dur-wipe) var(--ease-out);
+  }
+  :global(html.js) .printLate {
+    clip-path: inset(-0.2em 100% -0.2em -0.2em);
+  }
+  :global(html.js) [data-on] > .printLate {
+    animation: print var(--dur-print-role) calc(var(--d, 0ms) + var(--delay-role)) var(--ease-out)
+      both;
+  }
 }

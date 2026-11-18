@@ -11,3 +11,29 @@
   padding: 0.34em 0.5em 0.3em;
   border-radius: 1px;
 }
+
+@keyframes flag-flip {
+  0% {
+    opacity: 0;
+    transform: perspective(420px) rotateX(-88deg);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(420px) rotateX(0);
+  }
+}
+
+/* Hero only: the flag flips in like an updated price label once its block (data-now) is
+   in view, delayed by --d so it lands near --now-at after load. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) [data-now] .flag {
+    opacity: 0;
+  }
+  :global(html.js) [data-now][data-on] .flag {
+    transform-origin: 50% 0;
+    animation: flag-flip var(--dur-flip) var(--d, 0ms) var(--ease-out) both;
+  }
+}

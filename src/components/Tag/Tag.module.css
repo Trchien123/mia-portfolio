@@ -3,3 +3,48 @@
   filter: var(--tag-shadow);
   transform-origin: 50% 0;
 }
+
+@keyframes hang {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px) rotate(var(--swing, -2deg));
+    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(0) rotate(calc(var(--swing, -2deg) * -0.35));
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  72% {
+    transform: translateY(0) rotate(calc(var(--swing, -2deg) * 0.1));
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Composed by the hero: the whole tag drops on load and settles on its hinge. */
+.dropOnLoad {
+  transform-origin: 50% 0;
+}
+
+/* Composed by Experience and case tags: the face drops onto the static clips once the
+   tag root is marked in view (data-on). */
+.clipOn > [data-face] {
+  transform-origin: 50% 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) .dropOnLoad {
+    animation: hang var(--dur-hang-hero) var(--delay-hero-tag) both;
+  }
+  :global(html.js) .clipOn > [data-face] {
+    opacity: 0;
+  }
+  :global(html.js) .clipOn[data-on] > [data-face] {
+    opacity: 1;
+    animation: hang var(--dur-hang) calc(var(--delay-clip) + var(--i, 0) * var(--stagger)) both;
+  }
+}

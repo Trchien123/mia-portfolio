@@ -1,5 +1,10 @@
 .tag {
+  composes: clipOn from '../Tag/Tag.module.css';
+  --swing: -1.8deg;
   transition: transform var(--dur-tilt) var(--ease-ui);
+}
+.tag:nth-child(2) {
+  --swing: 1.8deg;
 }
 .hangRail {
   display: none;
@@ -59,7 +64,7 @@
   height: 6px;
   background: var(--ink);
 }
-@media (hover: hover) {
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .tag:hover {
     transform: rotate(-0.8deg);
   }
@@ -72,7 +77,7 @@
     display: block;
     margin: 0 calc(var(--gutter) * -1) -5px;
   }
-  .tag > span {
+  .tag > [data-clip] {
     top: calc(var(--rail-h) - 12px);
   }
 }

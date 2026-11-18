@@ -1,18 +1,21 @@
 import type { Case } from '../../content/types'
+import { dataOn, TAG_VIEW } from '../../motion/motion'
+import { useInViewOnce } from '../../motion/useInViewOnce'
 import { PlaceholderSlot } from '../PlaceholderSlot/PlaceholderSlot'
 import { PricePosition } from '../PricePosition/PricePosition'
 import { Rail } from '../Rail/Rail'
 import { Tag } from '../Tag/Tag'
 import styles from './CaseTag.module.css'
 
-type CaseTagProps = { item: Case; index: number }
+type CaseTagProps = { item: Case }
 
-export function CaseTag({ item, index }: CaseTagProps) {
+export function CaseTag({ item }: CaseTagProps) {
   const headingId = `case-${item.id}`
+  const [ref, on] = useInViewOnce<HTMLDivElement>(TAG_VIEW)
   return (
-    <div data-case>
+    <div ref={ref} className={styles.case} data-case data-draw="view" data-on={dataOn(on)}>
       <Rail />
-      <Tag labelledBy={headingId} kind="case" index={index} className={styles.tag}>
+      <Tag on={on} labelledBy={headingId} kind="case" className={styles.tag}>
         <Tag.Clip side="l" />
         <Tag.Clip side="r" />
         <Tag.Face>

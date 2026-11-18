@@ -12,7 +12,12 @@
   border: 1px solid rgba(70, 76, 80, 0.35);
   border-top: 0;
   border-radius: 0 0 3px 3px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.85), rgba(196, 202, 206, 0.55) 45%, rgba(255, 255, 255, 0.75));
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(196, 202, 206, 0.55) 45%,
+    rgba(255, 255, 255, 0.75)
+  );
 }
 .card {
   width: 100%;
@@ -34,4 +39,26 @@
   font-stretch: 87%;
   line-height: 1.38;
   text-wrap: pretty;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(2.2deg);
+  }
+  30% {
+    transform: rotate(-1.3deg);
+  }
+  60% {
+    transform: rotate(0.5deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+/* One gentle swing on its arm when the objective comes into view. Never hidden first. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) .hang[data-on] {
+    animation: swing var(--dur-talker) var(--ease-out) both;
+  }
 }

@@ -10,8 +10,8 @@ export function SelectedWork() {
         Selected work
       </SectionHeading>
       <div className={styles.cases}>
-        {profile.cases.map((item, i) => (
-          <CaseTag key={item.id} item={item} index={i} />
+        {profile.cases.map((item) => (
+          <CaseTag key={item.id} item={item} />
         ))}
       </div>
     </section>

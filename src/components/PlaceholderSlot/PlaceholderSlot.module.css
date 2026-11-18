@@ -17,6 +17,7 @@
   inset: 0;
   border-radius: 2px;
   pointer-events: none;
+  transition: opacity var(--dur-slot) var(--ease-ui);
 }
 .slot::before {
   border: 1.5px dashed rgba(22, 20, 15, 0.5);
@@ -24,6 +25,15 @@
 .slot::after {
   border: 1.5px solid rgba(22, 20, 15, 0.34);
   opacity: 0;
+}
+/* Firm-up: the dashed outline gives way to a solid one, as if freshly printed. */
+@media (hover: hover) {
+  .slot:hover::before {
+    opacity: 0;
+  }
+  .slot:hover::after {
+    opacity: 1;
+  }
 }
 .slot dt,
 .filled dt {

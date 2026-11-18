@@ -1,0 +1,18 @@
+/* Global motion rules. Keyframes live in the CSS Module that owns them (DESIGN.md Motion).
+   Every hidden starting state is gated on html.js, which index.html sets before paint only
+   when IntersectionObserver exists and reduced motion is not requested. */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

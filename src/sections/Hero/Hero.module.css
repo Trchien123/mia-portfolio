@@ -2,6 +2,8 @@
   padding: 22px var(--gutter) clamp(64px, 10vh, 112px);
 }
 .tag {
+  composes: dropOnLoad from '../../components/Tag/Tag.module.css';
+  --swing: -1.6deg;
   margin-top: var(--tuck);
 }
 .face {
@@ -43,6 +45,7 @@
   padding-top: 6px;
 }
 .role {
+  composes: printLate from '../../components/SectionHeading/SectionHeading.module.css';
   margin-top: 2px;
   font-size: var(--t-mid);
   text-wrap: balance;

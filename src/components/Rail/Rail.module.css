@@ -25,3 +25,27 @@
   height: 1px;
   background: rgba(255, 255, 255, 0.55);
 }
+
+@keyframes rail-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* The parent decides when its rail draws: data-draw="load" on page load,
+   data-draw="view" when the parent is marked in view (data-on). */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) [data-draw='load'] > .rail {
+    animation: rail-draw var(--dur-rail) var(--ease-out) both;
+  }
+  :global(html.js) [data-draw='view'] > .rail {
+    transform: scaleX(0);
+    transition: transform var(--dur-rail) var(--ease-out);
+  }
+  :global(html.js) [data-draw='view'][data-on] > .rail {
+    transform: scaleX(1);
+  }
+}

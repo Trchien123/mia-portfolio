@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react'
+import type { CSSProperties } from 'react'
 import { BrandsRow } from '../../components/BrandsRow/BrandsRow'
 import { CopyEmailButton } from '../../components/CopyEmailButton/CopyEmailButton'
 import { CvLink } from '../../components/CvLink/CvLink'
@@ -7,23 +7,15 @@ import { Rail } from '../../components/Rail/Rail'
 import { Tag } from '../../components/Tag/Tag'
 import { TearOffStrip } from '../../components/TearOffStrip/TearOffStrip'
 import { profile } from '../../content/profile'
-import { dataOn, t0 } from '../../motion/motion'
 import { useBrushSway } from '../../motion/useBrushSway'
-import { useInViewOnce } from '../../motion/useInViewOnce'
 import styles from './Hero.module.css'
 
-/** NOW flag flip target, ms from load. */
-const NOW_AT_MS = 1250
+/** Reading order of the hero rows: each prints one stagger step after the one above it. */
+const row = (k: number) => ({ '--k': k }) as CSSProperties
 
 export function Hero() {
   const { current } = profile
   const { tagRef, faceRef } = useBrushSway<HTMLDivElement, HTMLDivElement>()
-  const [flipDelay, setFlipDelay] = useState(0)
-  // The NOW flag waits for the tag to settle (~1.25s after load), or flips at once if reached later.
-  const [nowRef, nowOn] = useInViewOnce<HTMLDivElement>({
-    threshold: 0.4,
-    onEnter: () => setFlipDelay(Math.max(0, NOW_AT_MS - (performance.now() - t0))),
-  })
   return (
     <section id="top" className={styles.hero} aria-labelledby="hero-name" data-draw="load">
       <Rail />
@@ -33,30 +25,33 @@ export function Hero() {
           <Tag.Clip side="r" />
           <div ref={faceRef} className={styles.face}>
             <div className={styles.body}>
-              <h1 id="hero-name" className={`cond ${styles.name}`}>
+              <h1 id="hero-name" className={`cond ${styles.name} ${styles.cascade}`} style={row(0)}>
                 {profile.name}
               </h1>
-              <p className={styles.line}>{profile.oneLiner.join(' ')}</p>
+              <p className={`${styles.line} ${styles.cascade}`} style={row(1)}>
+                {profile.oneLiner.join(' ')}
+              </p>
               <div
-                ref={nowRef}
                 className={styles.now}
                 role="group"
                 aria-label="Current role"
                 data-now
-                data-on={dataOn(nowOn)}
-                style={{ '--d': `${Math.round(flipDelay)}ms` } as CSSProperties}
+                data-on=""
+                style={{ ...row(2), '--d': 'var(--hero-row-2-at)' } as CSSProperties}
               >
                 <p>
                   <NowFlag />
                 </p>
-                <p className={`cond ${styles.role}`}>{current.role}</p>
-                <p className={styles.company}>{current.company}</p>
-                <p className={styles.note}>{current.promotedLine}</p>
+                <p className={`cond ${styles.role} ${styles.cascade}`}>{current.role}</p>
+                <p className={`${styles.company} ${styles.cascade}`}>{current.company}</p>
+                <p className={`${styles.note} ${styles.cascade}`}>{current.promotedLine}</p>
               </div>
-              <BrandsRow brands={profile.brands} />
+              <div className={`${styles.brands} ${styles.cascade}`} style={row(3)}>
+                <BrandsRow brands={profile.brands} />
+              </div>
             </div>
             <TearOffStrip>
-              <span className={styles.mailRow}>
+              <span className={`${styles.mailRow} ${styles.cascade}`} style={row(4)}>
                 <a className={styles.mail} href={`mailto:${profile.email}`}>
                   <span className={styles.mailPrefix}>Email</span>
                   {profile.email}

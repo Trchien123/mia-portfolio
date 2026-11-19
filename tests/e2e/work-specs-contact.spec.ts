@@ -44,7 +44,7 @@ test('specifications lists education, tools and languages', async ({ page }) => 
 test('contact footer offers email, phone, LinkedIn and copy', async ({ page }) => {
   const footer = page.getByRole('contentinfo')
   await expect(
-    footer.getByRole('heading', { level: 2, name: 'Ask staff about this item.' }),
+    footer.getByRole('heading', { level: 2, name: 'Let’s work together.' }),
   ).toBeVisible()
   await expect(footer.getByRole('link', { name: profile.email })).toHaveAttribute(
     'href',

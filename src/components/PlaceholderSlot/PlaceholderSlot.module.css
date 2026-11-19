@@ -44,10 +44,12 @@
 .slot dd {
   color: var(--ink-2);
 }
-@media (max-width: 520px) {
+/* Phones: the label sits on its own line above the text, so the copy gets the full width. */
+@media (max-width: 720px) {
   .slot,
   .filled {
-    grid-template-columns: 5.75rem minmax(0, 1fr);
-    padding: 12px 14px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+    padding: 12px 14px 14px;
   }
 }

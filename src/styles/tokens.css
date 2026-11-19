@@ -62,6 +62,9 @@
   --dur-gun: 1850ms;
   --delay-hero-tag: 380ms;
   --delay-role: 360ms;
+  --delay-hero-text: 560ms;
+  --stagger-hero-text: 120ms;
+  --hero-row-2-at: calc(var(--delay-hero-text) + 2 * var(--stagger-hero-text));
   --delay-clip: 220ms;
   --stagger: 160ms;
 }

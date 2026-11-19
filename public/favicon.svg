@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="0" y="6" width="64" height="7" fill="#8A8B86"/>
-  <rect x="14" y="13" width="4" height="9" fill="#16140F"/>
-  <rect x="46" y="13" width="4" height="9" fill="#16140F"/>
-  <path d="M6 22h52v36H6z" fill="#F6CB2A" stroke="#16140F" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M19 51V30l13 14 13-14v21" fill="none" stroke="#16140F" stroke-width="6" stroke-linejoin="miter"/>
+  <rect width="64" height="64" rx="12" fill="#16140F"/>
+  <!-- Raised "M": a darker extrusion under the letter face gives the embossed look. -->
+  <path transform="translate(0 4)" fill="#9A7608" d="M12 50V13h11l9 17 9-17h11v37h-9V31l-8 14h-6l-8-14v19z"/>
+  <path fill="#F6CB2A" d="M12 50V13h11l9 17 9-17h11v37h-9V31l-8 14h-6l-8-14v19z"/>
+  <path fill="none" stroke="#FCE38A" stroke-width="1.5" d="M12.75 49.5V13.75h9.8M42.45 13.75h8.8"/>
 </svg>

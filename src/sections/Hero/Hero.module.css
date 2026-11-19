@@ -45,7 +45,6 @@
   padding-top: 6px;
 }
 .role {
-  composes: printLate from '../../components/SectionHeading/SectionHeading.module.css';
   margin-top: 2px;
   font-size: var(--t-mid);
   text-wrap: balance;
@@ -97,5 +96,27 @@
     margin-top: 32px;
     padding-top: 20px;
     border-top: 2px solid var(--ink);
+  }
+}
+
+.brands {
+  grid-area: brands;
+}
+
+/* Entrance: the rows print top to bottom (name, line, current role, brands, email) while the
+   tag settles. `backwards` fill only: once printed, no clip-path is left behind. */
+@keyframes hero-print {
+  from {
+    clip-path: inset(-0.2em 100% -0.2em -0.2em);
+  }
+  to {
+    clip-path: inset(-0.2em -0.2em -0.2em -0.2em);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) .cascade {
+    animation: hero-print var(--dur-wipe)
+      calc(var(--delay-hero-text) + var(--k, 0) * var(--stagger-hero-text)) var(--ease-out)
+      backwards;
   }
 }

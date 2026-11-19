@@ -5,7 +5,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto('')
 })
 
-test('selected work shows three case tags with placeholder slots', async ({ page }) => {
+test('selected work shows three case tags with brief, role and outcome', async ({ page }) => {
   const work = page.locator('#selected-work')
   await expect(work.getByRole('heading', { level: 2, name: 'Selected work' })).toBeVisible()
   await expect(work.getByText(profile.ledes.selectedWork, { exact: true })).toBeVisible()
@@ -13,16 +13,20 @@ test('selected work shows three case tags with placeholder slots', async ({ page
   await expect(cases).toHaveCount(3)
   await expect(cases.getByRole('heading', { level: 3 })).toHaveText([
     'HSBC Business Case Competition',
-    'Consumer Behavior research',
+    'Consumer Behavior Research',
     'Greenovation Conference',
   ])
   for (const [i, c] of profile.cases.entries()) {
     const article = cases.nth(i)
-    await expect(article.getByText('2024', { exact: true }).last()).toBeVisible()
+    await expect(article.getByText(c.year, { exact: true }).last()).toBeVisible()
     await expect(article.getByText(c.award, { exact: true })).toBeVisible()
-    const slots = article.locator('dl[aria-label="Case details, to be added"]')
+    const slots = article.locator('dl[aria-label="Case details"]')
     await expect(slots.locator('dt')).toHaveText(['Brief', 'My role', 'Outcome'])
-    await expect(slots.locator('dd')).toHaveText(['To be added', 'To be added', 'To be added'])
+    await expect(slots.locator('dd')).toHaveText([
+      c.brief ?? 'To be added',
+      c.role ?? 'To be added',
+      c.outcome ?? 'To be added',
+    ])
   }
 })
 
@@ -40,7 +44,7 @@ test('specifications lists education, tools and languages', async ({ page }) => 
 test('contact footer offers email, phone, LinkedIn and copy', async ({ page }) => {
   const footer = page.getByRole('contentinfo')
   await expect(
-    footer.getByRole('heading', { level: 2, name: 'Ask staff about this item.' }),
+    footer.getByRole('heading', { level: 2, name: 'Let’s work together.' }),
   ).toBeVisible()
   await expect(footer.getByRole('link', { name: profile.email })).toHaveAttribute(
     'href',
@@ -55,6 +59,9 @@ test('contact footer offers email, phone, LinkedIn and copy', async ({ page }) =
   await expect(linkedin).toHaveAttribute('target', '_blank')
   await expect(linkedin).toHaveAttribute('rel', /noopener/)
   await expect(footer.getByRole('button', { name: 'Copy email address' })).toBeVisible()
-  await expect(footer.getByText('Download CV (PDF)')).toHaveCount(0)
+  await expect(footer.getByRole('link', { name: 'Download CV (PDF)' })).toHaveAttribute(
+    'href',
+    profile.cvUrl ?? '',
+  )
   await expect(footer.getByText('Hoang Minh Anh · Ho Chi Minh City, Vietnam')).toBeVisible()
 })

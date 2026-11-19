@@ -12,7 +12,7 @@ export function Contact() {
       <Rail />
       <div ref={innerRef} className={styles.inner}>
         <h2 id="contact-title" className={styles.heading} data-on={dataOn(on)}>
-          Ask staff about this item.
+          Let’s work together.
         </h2>
         <ContactList />
       </div>

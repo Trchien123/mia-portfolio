@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { profile } from '../../src/content/profile.ts'
 
 const EMAIL = 'hmianh2504@gmail.com'
 
@@ -9,21 +10,27 @@ test('hero shows name, one-liner and current role', async ({ page }) => {
   await expect(hero).toContainText('Marketing graduate, Swinburne University, 2026.')
   const now = hero.getByLabel('Current role')
   await expect(now).toContainText('Now')
-  await expect(now).toContainText('Key Account Manager')
+  await expect(now).toContainText(profile.current.role)
   await expect(now).toContainText('DIGIWORLD Corporation')
   await expect(now).toContainText('Promoted from Trainee · Oct 2026')
-  for (const brand of ['ASUS', 'Xiaomi', 'Hisense', 'LG']) {
+  for (const brand of profile.brands) {
     await expect(hero).toContainText(brand)
   }
 })
 
-test('email link and no CV link while cvUrl is null', async ({ page }) => {
+test('email link and CV download link', async ({ page, request }) => {
   await page.goto('')
   await expect(page.locator('#top').getByRole('link', { name: new RegExp(EMAIL) })).toHaveAttribute(
     'href',
     `mailto:${EMAIL}`,
   )
-  await expect(page.getByText('Download CV')).toHaveCount(0)
+  const cv = page.locator('#top').getByRole('link', { name: 'Download CV (PDF)' })
+  await expect(cv).toBeVisible()
+  await expect(cv).toHaveAttribute('href', profile.cvUrl ?? '')
+  const url = new URL((await cv.getAttribute('href')) ?? '', page.url()).toString()
+  const res = await request.get(url)
+  expect(res.status()).toBe(200)
+  expect(res.headers()['content-type']).toContain('application/pdf')
 })
 
 test('copy writes email', async ({ page, context }) => {

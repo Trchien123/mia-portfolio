@@ -62,7 +62,7 @@ test('each section is labelled by its heading', async ({ page }) => {
   for (const [id, name] of Object.entries(expected)) {
     await expect(page.locator(`section#${id}`)).toHaveAccessibleName(name)
   }
-  await expect(page.locator('footer#contact')).toHaveAccessibleName('Ask staff about this item.')
+  await expect(page.locator('footer#contact')).toHaveAccessibleName('Let’s work together.')
   await expect(page.locator('h1')).toHaveCount(1)
 })
 

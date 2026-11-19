@@ -1,7 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="0" y="6" width="64" height="7" fill="#8A8B86"/>
-  <rect x="14" y="13" width="4" height="9" fill="#16140F"/>
-  <rect x="46" y="13" width="4" height="9" fill="#16140F"/>
-  <path d="M6 22h52v36H6z" fill="#F6CB2A" stroke="#16140F" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M19 51V30l13 14 13-14v21" fill="none" stroke="#16140F" stroke-width="6" stroke-linejoin="miter"/>
+  <style>
+    .face { stroke: #16140F; }
+    .dot { fill: #D9A600; }
+    .lift { stroke: #F6CB2A; }
+    @media (prefers-color-scheme: dark) {
+      .face { stroke: #F6CB2A; }
+      .dot { fill: #F6CB2A; }
+      .lift { stroke: #8A6A06; }
+    }
+  </style>
+  <!-- "m." : a heavy lowercase m with a full stop; the offset copy underneath makes it look raised. -->
+  <g fill="none" stroke-width="9.5" stroke-linejoin="round">
+    <path class="lift" transform="translate(2 2.5)" d="M7.5 56V22M7.5 32c0-7 4.3-10.5 9.5-10.5s9.5 3.5 9.5 10.5v24M26.5 32c0-7 4.3-10.5 9.5-10.5s9.5 3.5 9.5 10.5v24"/>
+    <path class="face" d="M7.5 56V22M7.5 32c0-7 4.3-10.5 9.5-10.5s9.5 3.5 9.5 10.5v24M26.5 32c0-7 4.3-10.5 9.5-10.5s9.5 3.5 9.5 10.5v24"/>
+  </g>
+  <circle class="dot" cx="56" cy="51" r="5.5"/>
 </svg>

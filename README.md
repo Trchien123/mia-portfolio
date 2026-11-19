@@ -1,6 +1,6 @@
 # Hoang Minh Anh — portfolio
 
-A single-page static portfolio for Hoang Minh Anh, Key Account Manager at DIGIWORLD (Ho Chi Minh City).
+A single-page static portfolio for Hoang Minh Anh, Key Account Executive at DIGIWORLD (Ho Chi Minh City).
 
 ## Stack
 

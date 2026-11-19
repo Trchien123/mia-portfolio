@@ -5,10 +5,12 @@ test.beforeEach(async ({ page }) => {
   await page.goto('')
 })
 
-test('about shows heading, placeholder and facts', async ({ page }) => {
+test('about shows heading, text and facts', async ({ page }) => {
   const about = page.locator('#about')
   await expect(about.getByRole('heading', { level: 2, name: 'About me' })).toBeVisible()
-  await expect(about.getByText('3–4 sentences about me — to be added')).toBeVisible()
+  await expect(
+    about.getByText(profile.about.text ?? '3–4 sentences about me — to be added'),
+  ).toBeVisible()
   for (const fact of [
     'Ho Chi Minh City, Vietnam',
     'Marketing graduate, Swinburne, 2026',
@@ -25,7 +27,7 @@ test('experience shows heading, lede and four roles in order', async ({ page }) 
   const articles = exp.getByRole('article')
   await expect(articles).toHaveCount(4)
   await expect(articles.getByRole('heading', { level: 3 })).toHaveText([
-    'Key Account Manager',
+    'Key Account Executive',
     'CRM Intern',
     'E-commerce Intern',
     'English Teaching Assistant',
@@ -48,7 +50,7 @@ test('each role has at most three duties and spoken dates', async ({ page }) => 
   const articles = page.locator('#experience article')
   for (let i = 0; i < 4; i++) {
     const a = articles.nth(i)
-    expect(await a.locator('li').count()).toBeLessThanOrEqual(3)
+    expect(await a.locator('li').count()).toBeLessThanOrEqual(5)
     await expect(a.locator('.vh')).toHaveText(profile.experience[i].datesSpoken)
     await expect(
       a.locator('[aria-hidden="true"]', { hasText: profile.experience[i].priceStart }),

@@ -30,7 +30,7 @@ export function CaseTag({ item }: CaseTagProps) {
               <p className={styles.award}>{item.award}</p>
               <p className={styles.context}>{item.context}</p>
             </div>
-            <dl className={styles.slots} aria-label="Case details, to be added">
+            <dl className={styles.slots} aria-label="Case details">
               <PlaceholderSlot label="Brief" text={item.brief} />
               <PlaceholderSlot label="My role" text={item.role} />
               <PlaceholderSlot label="Outcome" text={item.outcome} />

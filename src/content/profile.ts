@@ -10,20 +10,20 @@ export const profile: Profile = {
   linkedinUrl: 'https://www.linkedin.com/in/minh-anh-ho%C3%A0ng-88aa00333',
   cvUrl: null, // TODO(owner): CV PDF (drop into public/ and set the path)
   oneLiner: [
-    'Keeps electronics brands’ marketplace stores running.',
+    'Keeps brands’ marketplace stores running.',
     'Marketing graduate, Swinburne University, 2026.',
   ],
   current: {
-    role: 'Key Account Manager',
+    role: 'Key Account Executive',
     company: 'DIGIWORLD Corporation',
     promotedLine: 'Promoted from Trainee · Oct 2026',
   },
-  brands: ['ASUS', 'Xiaomi', 'Hisense', 'LG'],
+  brands: ['ASUS', 'Xiaomi', 'Hisense', 'LG Vina'],
   channels: ['Shopee', 'Lazada', 'TikTok Shop'],
   objective:
-    'Marketing graduate and Key Account Manager with hands-on experience in e-commerce operations, key accounts and customer relationships. I coordinate cross-functional teams, analyze sales performance and run marketplace operations, with one aim: grow the business and give customers an experience worth coming back for.',
+    'I’m a Key Account Executive with a marketing background and a passion for e-commerce. From managing key accounts and running marketplace operations to turning sales data into action, I connect teams and ideas to achieve one goal: growing the business while creating customer experiences people want to return to.',
   about: {
-    text: null, // TODO(owner): 3–4 first-person sentences
+    text: 'I’m an energetic, resilient and curious individual who embraces challenges and is always eager to grow. I enjoy stepping out of my comfort zone, learning new things and turning challenges into opportunities. With a proactive mindset and a strong sense of responsibility, I thrive in collaborative environments and enjoy making things happen. Always curious, always evolving, and never afraid to take the next step.',
     facts: [
       'Ho Chi Minh City, Vietnam',
       'Marketing graduate, Swinburne, 2026',
@@ -32,21 +32,23 @@ export const profile: Profile = {
   },
   ledes: {
     experience: 'Four roles, newest first, across Shopee, Lazada, TikTok Shop and brand websites.',
-    selectedWork: 'Three projects from 2024. Write-ups are on their way to the shelf.',
+    selectedWork: 'Three research and case projects, 2024 – 2026.',
   },
   experience: [
     {
-      id: 'key-account-manager',
-      title: 'Key Account Manager',
+      id: 'key-account-executive',
+      title: 'Key Account Executive',
       company: 'DIGIWORLD Corporation',
       priceStart: '10.26',
       priceEnd: 'NOW',
       datesSpoken: 'October 2026 to present',
       subLine: 'Key Account Management Trainee · 06.26 – 10.26',
       duties: [
-        'Manages daily operations and order fulfillment for the ASUS Official Website and Xiaomi Authorized Store.',
-        'Supports Hisense official stores: campaign execution and marketplace operations.',
-        'Monitors P&L, sales and KPIs; keeps deliveries on time with Operations and Customer Service.',
+        'Managed daily operations and order fulfillment for ASUS Official Website, Xiaomi Authorized Store and Lion Corporation (Thailand).',
+        'Coordinated with Operations and Customer Service teams to ensure timely order processing and delivery.',
+        'Supported Hisense official stores across e-commerce platforms, including campaign execution and marketplace operations.',
+        'Monitored P&L, GMV, sales performance and operational KPIs to track business performance.',
+        'Coordinated with brand partners on pricing, promotions, sales planning and financial reconciliation.',
       ],
     },
     {
@@ -57,8 +59,10 @@ export const profile: Profile = {
       priceEnd: '06.26',
       datesSpoken: 'May 2026 to June 2026',
       duties: [
-        'Handled customer inquiries, complaints, returns and membership services.',
-        'Worked with cross-functional teams to resolve customer issues quickly.',
+        'Handled customer inquiries, complaints, returns and membership services while ensuring excellent customer satisfaction.',
+        'Coordinated with cross-functional teams to resolve customer issues and deliver timely, solution-oriented support.',
+        'Maintained and updated customer information, membership records and service requests to ensure accurate CRM data management.',
+        'Supported customer retention by following up on feedback, monitoring recurring issues and identifying opportunities to improve the customer experience.',
       ],
     },
     {
@@ -96,31 +100,37 @@ export const profile: Profile = {
       award: 'Top 8 Regional Finalist',
       context:
         'Among the top 8 teams in the regional round: analyzed complex business cases and presented strategic marketing and financial recommendations.',
-      brief: null, // TODO(owner): brief for HSBC Business Case Competition 2024
-      role: null, // TODO(owner): my role for HSBC Business Case Competition 2024
-      outcome: null, // TODO(owner): outcome for HSBC Business Case Competition 2024
+      brief:
+        'Analyzed a real-world business case, identifying key business challenges and evaluating potential growth opportunities through market and financial analysis.',
+      role: 'Collaborated with team members to conduct research, analyze business data, develop strategic recommendations and contribute to the final presentation.',
+      outcome:
+        'Achieved Top 8 Regional Finalist, demonstrating strong analytical thinking, problem-solving, teamwork and business presentation skills.',
     },
     {
       id: 'consumer-behavior',
-      title: 'Consumer Behavior research',
+      title: 'Consumer Behavior Research',
       year: '2024',
       award: 'Best Performance',
       context:
-        'Marketing Research & Analytics, Swinburne: research projects applying marketing insights, data analysis and consumer psychology.',
-      brief: null, // TODO(owner): brief for Consumer Behavior research 2024
-      role: null, // TODO(owner): my role for Consumer Behavior research 2024
-      outcome: null, // TODO(owner): outcome for Consumer Behavior research 2024
+        'Conducted consumer behavior research, applying marketing theories, consumer psychology and data analytics to understand purchase intentions and decision-making.',
+      brief:
+        'Participated in academic research activities, including the CIEMB research initiative at National Economics University (NEU), focusing on consumer behavior and marketing-related topics.',
+      role: 'Contributed to literature reviews, research design, data collection, statistical analysis and interpretation of research findings.',
+      outcome:
+        'Received Best Performance recognition and contributed to academic research presented in the CIEMB conference proceedings.',
     },
     {
       id: 'greenovation',
       title: 'Greenovation Conference',
-      year: '2024',
-      award: 'Research Participant · Swinburne University',
+      year: '2024 – 2026',
+      award: 'Top 3 · Research Participant · Swinburne University',
       context:
-        'Student-led research on sustainable innovation; presented marketing-related findings and joined the academic discussions.',
-      brief: null, // TODO(owner): brief for Greenovation Conference 2024
-      role: null, // TODO(owner): my role for Greenovation Conference 2024
-      outcome: null, // TODO(owner): outcome for Greenovation Conference 2024
+        'Participated in student-led research exploring consumer behavior, nutrition awareness and sustainable consumption.',
+      brief:
+        'Conducted research on Vietnamese university students’ purchase intentions toward ultra-processed foods, applying the Theory of Planned Behavior (TPB) and a nutrition knowledge framework.',
+      role: 'Contributed to literature review, questionnaire development, data collection, statistical analysis using SPSS and AMOS, and interpretation of research findings.',
+      outcome:
+        'Achieved Top 3 recognition at the Greenovation Conference, presenting research findings and contributing to academic discussions on consumer behavior and sustainable consumption.',
     },
   ],
   specs: [

@@ -76,7 +76,8 @@ test('sections clip on and print once scrolled into view', async ({ page }) => {
   await expect(firstFace).toHaveCSS('opacity', '0')
   await expect(page.locator('#about-title')).toHaveCSS('clip-path', /inset\(.*100%/)
   for (const id of ['#about', '#experience', '#selected-work', '#specifications', '#contact']) {
-    await page.locator(id).scrollIntoViewIfNeeded()
+    // Scroll to the heading itself: a tall section centred in view can leave its heading above the fold.
+    await page.locator(`${id} h2`).first().scrollIntoViewIfNeeded()
     await page.mouse.wheel(0, 400)
   }
   await expect

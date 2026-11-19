@@ -90,7 +90,7 @@ test('tab order: skip link, nav, hero, wobbler, footer LinkedIn', async ({ page 
   await page.setViewportSize({ width: 1440, height: 900 })
   await page.goto('')
   const seen: string[] = []
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 18; i++) {
     await page.keyboard.press('Tab')
     seen.push(
       await page.evaluate(() => {

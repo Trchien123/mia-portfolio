@@ -8,7 +8,8 @@ export const profile: Profile = {
   phone: '+84 928 718 538',
   phoneHref: 'tel:+84928718538',
   linkedinUrl: 'https://www.linkedin.com/in/minh-anh-ho%C3%A0ng-88aa00333',
-  cvUrl: null, // TODO(owner): CV PDF (drop into public/ and set the path)
+  // Relative to the page, so it works at the site root and under a sub-path. File lives in public/.
+  cvUrl: 'Hoang-Minh-Anh-CV.pdf',
   oneLiner: [
     'Keeps brands’ marketplace stores running.',
     'Marketing graduate, Swinburne University, 2026.',

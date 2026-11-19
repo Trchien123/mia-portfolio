@@ -59,6 +59,9 @@ test('contact footer offers email, phone, LinkedIn and copy', async ({ page }) =
   await expect(linkedin).toHaveAttribute('target', '_blank')
   await expect(linkedin).toHaveAttribute('rel', /noopener/)
   await expect(footer.getByRole('button', { name: 'Copy email address' })).toBeVisible()
-  await expect(footer.getByText('Download CV (PDF)')).toHaveCount(0)
+  await expect(footer.getByRole('link', { name: 'Download CV (PDF)' })).toHaveAttribute(
+    'href',
+    profile.cvUrl ?? '',
+  )
   await expect(footer.getByText('Hoang Minh Anh · Ho Chi Minh City, Vietnam')).toBeVisible()
 })

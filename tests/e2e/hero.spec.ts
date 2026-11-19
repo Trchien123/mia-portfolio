@@ -18,13 +18,19 @@ test('hero shows name, one-liner and current role', async ({ page }) => {
   }
 })
 
-test('email link and no CV link while cvUrl is null', async ({ page }) => {
+test('email link and CV download link', async ({ page, request }) => {
   await page.goto('')
   await expect(page.locator('#top').getByRole('link', { name: new RegExp(EMAIL) })).toHaveAttribute(
     'href',
     `mailto:${EMAIL}`,
   )
-  await expect(page.getByText('Download CV')).toHaveCount(0)
+  const cv = page.locator('#top').getByRole('link', { name: 'Download CV (PDF)' })
+  await expect(cv).toBeVisible()
+  await expect(cv).toHaveAttribute('href', profile.cvUrl ?? '')
+  const url = new URL((await cv.getAttribute('href')) ?? '', page.url()).toString()
+  const res = await request.get(url)
+  expect(res.status()).toBe(200)
+  expect(res.headers()['content-type']).toContain('application/pdf')
 })
 
 test('copy writes email', async ({ page, context }) => {
